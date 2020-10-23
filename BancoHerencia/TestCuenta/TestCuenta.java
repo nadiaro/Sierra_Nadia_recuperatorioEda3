@@ -68,7 +68,6 @@ public class TestCuenta {
 		Assert.assertEquals(esperado, dos.getSaldo());
 
 }
-	//este metodo no me esta contando las extracciones para aplicar el costo adicional
 	@Test
 	public void testQueVerificaExtraerConCostoAdicionalCajaAhorro(){
 		
@@ -82,9 +81,7 @@ public class TestCuenta {
 		dos.extraer(1000.0d);
 		
 			
-		Double esperado=6000.0d;
-		//el esperado deberia ser 5900, porque le tiene que restar 100 pesos a la cuarta extracion
-		
+		Double esperado=4900.0d;		
 		Assert.assertEquals(esperado, dos.getSaldo());
 
 }
