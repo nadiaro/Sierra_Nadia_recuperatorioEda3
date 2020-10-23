@@ -28,16 +28,20 @@ public class TestAerolinea {
 
 		justo.agregarPasajero(nadia);
 		justo.agregarPasajero(romi);
+		Pasajero esperado=nadia;
 		
-		Integer esperado=28333444;
-		
-		Assert.assertEquals(esperado, nadia.getDni());
+		Assert.assertEquals(esperado, justo.buscarPasajero(28333444));
 	
 	}
 	
 	@Test
 	public void testVerificaDisponibilidadAsiento(){
 		
+		Vuelo justo= new Vuelo("Ezeiza", "China");
+		
+		Asiento uno=new Asiento(2,3,true);
+
+		Assert.assertFalse(justo.verificarDisponibilidadAsiento(uno)); //esta ocupado
 	}
 	
 	@Test
@@ -48,7 +52,7 @@ public class TestAerolinea {
 		Pasajero nadia= new Pasajero(28333444,"Nadia", "Sierra");
 		
 		Asiento uno=new Asiento(2,3,false);
-		
+				
 		Assert.assertTrue(justo.asignarAsiento(nadia,uno));
 		
 	}
