@@ -12,22 +12,23 @@ public class CuentaCorriente extends Cuenta {
 		this.limite=limite;
 	}
 
-	private Double calcularInteresPorDescubierto() {
-		
-		return this.interesDescubierto*this.getSaldo();
-	}
-
+	
 	@Override
-	public void extraer(Double monto) {
-
-		if(this.getSaldo()>=monto){
-			this.setSaldo(getSaldo()-monto);
-		}else{
-				this.setSaldo(getSaldo()+ this.limite-calcularInteresPorDescubierto()-monto);
+	public Boolean extraer(Double monto) {
+		Double montoAdeudado=0.0;
+		
+		if(this.getSaldo()>=0){
+			if(this.getSaldo()>=monto){
+				this.setSaldo(getSaldo()-monto);
+			}
+			if((this.getSaldo()+this.limite)>=monto){
+				montoAdeudado=(this.getSaldo()*this.interesDescubierto)+this.getSaldo()+this.limite-monto;
+				this.setSaldo(montoAdeudado);
+				return true;
 			}
 		}
-	
-
+		return false;	
+	}
 
 	@Override
 	public void depositar(Double monto) {
@@ -50,6 +51,8 @@ public class CuentaCorriente extends Cuenta {
 	public void setInteresDescubierto(Double interesDescubierto) {
 		this.interesDescubierto = interesDescubierto;
 	}
+
+	
 	
 	
 	
