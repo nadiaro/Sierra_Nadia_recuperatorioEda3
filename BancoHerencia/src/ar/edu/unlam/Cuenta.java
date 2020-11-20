@@ -13,7 +13,7 @@ public abstract class Cuenta {
 		this.cliente = cliente;
 	}
 
-	public abstract Boolean extraer(Double monto);
+	public abstract Boolean extraer(Double monto) throws saldoInsuficienteException;
 	
 	public abstract void depositar(Double monto);
 

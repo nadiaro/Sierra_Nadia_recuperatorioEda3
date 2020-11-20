@@ -16,14 +16,18 @@ public class CajaAhorro extends Cuenta{
 	@Override
 	public Boolean extraer(Double monto) {
 		
-		if(this.getSaldo()>=monto && this.cantidadExtracciones<=3){
-			this.setSaldo(getSaldo()-monto);
-			this.cantidadExtracciones++;
+		if(this.getSaldo()>=0){
+			
+			if(this.getSaldo()>=monto && this.cantidadExtracciones<=3){
+				this.setSaldo(getSaldo()-monto);
+				this.cantidadExtracciones++;
 		}
-		if(this.getSaldo()>=monto && this.cantidadExtracciones>=4){
+			if(this.getSaldo()>=monto && this.cantidadExtracciones>=4){
 				this.setSaldo(getSaldo()-this.costoAdicional-monto);
 				return true;
+			}
 		}
+		
 		return false;
 	}
 		

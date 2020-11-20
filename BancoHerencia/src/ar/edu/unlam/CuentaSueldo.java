@@ -9,14 +9,14 @@ public class CuentaSueldo extends Cuenta{
 
 	
 	@Override
-	public Boolean extraer(Double monto) {
+	public Boolean extraer(Double monto){
 		if(this.getSaldo()>=monto){
 			if(this.getSaldo()>=0d){
 				this.setSaldo(getSaldo()-monto);
 				return true;
 			}
 		}
-		return false;
+		 return false;
 	}
 
 	@Override
