@@ -52,7 +52,6 @@ public class Grupo02 {
 	@Test
 	public void  queSePuedanIncorporarDistintosVehiculos() throws ColitionException{		
 		
-		try{
 			Mapa actual = new Mapa("Buenos Aires");
 			
 			actual.agregarVehiculo(new Auto("JJZ526", 5, 240, 10.40338, 1.17403));
@@ -67,27 +66,23 @@ public class Grupo02 {
 			actual.agregarVehiculo(new Tren(15, 250, 100, 45.826541, 3.965412));
 
 			assertEquals((Integer) 10, actual.getCantidadDeVehiculos());
-			assertFalse(actual.hayCoalicion());
-		} catch(ColitionException e){
-			e.printStackTrace();
-		}
-		
-		
+			assertFalse(actual.hayCoalición());
 	}
 	
 	@Test (expected = ColitionException.class)
-	public void  queChoquenDosVehiculos() throws ColitionException{	
+	public void  queChoquenDosVehiculos() throws ColitionException {	
 		
 		MedioTransporte unAuto = new Auto("JJZ526", 5, 240, 41.40338, 2.17403);
 		MedioTransporte unaMoto = new Moto("094AB5", 200, 25.1234, 1.1234);
 		
 		Mapa actual = new Mapa("Buenos Aires");
+		
 		actual.agregarVehiculo(unAuto);
 		actual.agregarVehiculo(unaMoto);
 
-		unAuto.actualizarCoordenadas(25.1234, 1.1234);
 		
-		assertTrue(actual.hayCoalicion());
-
+		unAuto.actualizarCoordenadas(25.1234, 1.1234);
+		assertTrue(actual.hayCoalición());
+		
 	}
 }

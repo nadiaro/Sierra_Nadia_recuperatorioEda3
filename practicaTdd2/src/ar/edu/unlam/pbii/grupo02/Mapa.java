@@ -6,41 +6,33 @@ import java.util.Set;
 public class Mapa {
 	
 	private String nombreCiudad;
-	private Integer cantidadDeVehiculos;
 	private Set<MedioTransporte>vehiculos;
 
+	
 	public Mapa(String nombreCiudad) {
 		this.nombreCiudad=nombreCiudad;
 		this.vehiculos=new HashSet<MedioTransporte>();
-		this.cantidadDeVehiculos=0;
 	}
 
 	
 	public void agregarVehiculo(MedioTransporte nuevo) {
 		vehiculos.add(nuevo);
-		cantidadDeVehiculos++;
 	}
 	
-	public Boolean hayCoalicion() throws ColitionException{
-		
-		MedioTransporte uno=new MedioTransporte(50.0d, 50.0d);
-		MedioTransporte dos=new MedioTransporte(50.0d, 50.0d);
-
-		vehiculos.add(uno);
-		vehiculos.add(dos);
-		
-		if(uno.getLatitud().equals(dos.getLatitud())){
-			if(uno.getLongitud().equals(dos.getLongitud())){
-				throw new ColitionException ("Chocaron");
-
+	public Boolean hayCoalición() throws ColitionException{
+		Boolean chocaron=false;
+		for(MedioTransporte x: vehiculos){
+			for(MedioTransporte p: vehiculos){
+				if(x!=p && x.getLatitud().equals(p.getLatitud())&& x.getLongitud().equals(p.getLongitud())){
+					chocaron=true;
+					throw new ColitionException("Chocaron");
+				}
 			}
 		}
-		return true;
+		return chocaron;
 	}
-	
-	
-	
-	
+
+			
 	/**
 	 * @return the vehiculos
 	 */
@@ -61,15 +53,7 @@ public class Mapa {
 	 * @return the cantidadDeVehiculos
 	 */
 	public Integer getCantidadDeVehiculos() {
-		return cantidadDeVehiculos;
-	}
-
-
-	/**
-	 * @param cantidadDeVehiculos the cantidadDeVehiculos to set
-	 */
-	public void setCantidadDeVehiculos(Integer cantidadDeVehiculos) {
-		this.cantidadDeVehiculos = cantidadDeVehiculos;
+		return vehiculos.size();
 	}
 
 
@@ -86,10 +70,5 @@ public class Mapa {
 	public void setNombreCiudad(String nombreCiudad) {
 		this.nombreCiudad = nombreCiudad;
 	}
-
-
-	
-
-	
 
 }
