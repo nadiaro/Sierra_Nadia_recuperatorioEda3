@@ -61,19 +61,19 @@ public class Recuperatorio {
 		argentina.agregarVehiculo(new HidroAvion(12, "Mitsubishi F1M"));
 		argentina.agregarVehiculo(new Anfibio(12, "LARC-5"));
 		
-		assertEquals((Integer)13, argentina.getCapacidadDeDefensa());
+		assertEquals((Integer)12, argentina.getCapacidadDeDefensa());
 	}
 	
-//	@Test
-//	public void queSePuedaCrearUnaBatalla() {
-//		FuerzaArmada argentina = new FuerzaArmada();
-//		
-//		argentina.crearBatalla("San Lorenzo", TipoDeBatalla.TERRESTRE, 100.5, 20.3);
-//		
-//		assertEquals(100.5, argentina.getBatalla("San Lorenzo").getLatitud(),0.01);
-//		assertEquals(20.3, argentina.getBatalla("San Lorenzo").getLongitud(),0.01);
-//	}	
-//	
+	@Test
+	public void queSePuedaCrearUnaBatalla() {
+		FuerzaArmada argentina = new FuerzaArmada();
+		
+		argentina.crearBatalla("San Lorenzo", TipoDeBatalla.TERRESTRE, 100.5, 20.3);
+		
+		assertEquals(100.5, argentina.getBatalla("San Lorenzo").getLatitud(),0.01);
+		assertEquals(20.3, argentina.getBatalla("San Lorenzo").getLongitud(),0.01);
+	}	
+	
 //	@Test
 //	public void queSePuedaPresentarBatallaTerrestre() throws VehiculoInexistente, VehiculoIncompatible {
 //		FuerzaArmada argentina = new FuerzaArmada();

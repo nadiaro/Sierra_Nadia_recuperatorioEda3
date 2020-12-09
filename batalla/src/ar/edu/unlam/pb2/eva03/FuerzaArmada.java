@@ -18,8 +18,14 @@ public class FuerzaArmada {
 	}
 
 
-	public void agregarVehiculo(Vehiculo nuevo) {
+	public Boolean agregarVehiculo(Vehiculo nuevo) {
+		for(Vehiculo v: convoy){
+			if(v.getId().equals(nuevo.getId())){
+				return false;
+			}
+		}
 		this.convoy.add(nuevo);
+		return true;
 	}
 
 
@@ -58,6 +64,12 @@ public class FuerzaArmada {
 	public Integer getCapacidadDeDefensa() {
 		// TODO Auto-generated method stub
 		return convoy.size();
+	}
+
+
+	public Object getBatalla(String string) {
+		// TODO Auto-generated method stub
+		return null;
 	} 
 	
 	
