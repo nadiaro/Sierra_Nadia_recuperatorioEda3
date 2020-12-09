@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import ar.edu.unlam.pb2.eva03.enumeradores.TipoDeBatalla;
+
+
 public class FuerzaArmada {
 
 	private Set<Vehiculo> convoy;
@@ -26,6 +29,59 @@ public class FuerzaArmada {
 		}
 		this.convoy.add(nuevo);
 		return true;
+	}
+
+	public void crearBatalla(String nombre, TipoDeBatalla tipo, Double latitud,
+			Double longitud) {
+		this.batallas.put(nombre, new Batalla(tipo));
+	}
+
+	
+	public Boolean enviarALaBatalla(String nombre, Integer id) throws VehiculoIncompatible, VehiculoInexistente {
+
+		Batalla nueva=batallas.get(nombre);
+
+		switch(nueva.getTipo()){
+		case TERRESTRE:
+			for(Vehiculo v: convoy){
+				if(v instanceof Terrestre){
+					if(v.getId().equals(id)){
+						return true;
+					}
+				}else{
+					throw new VehiculoIncompatible("No esta permitido");
+				}
+
+			}
+			break;
+		case NAVAL:
+			for(Vehiculo v: convoy){
+				if(v instanceof Acuatico){
+					if(v.getId().equals(id)){
+						return true;
+					}
+				}else{
+					throw new VehiculoIncompatible("No esta permitido");
+				}
+
+			}
+			break;
+		case AEREA:
+			for(Vehiculo v: convoy){
+				if(v instanceof Volador){
+					if(v.getId().equals(id)){
+						return true;
+					}
+				}else{
+					throw new VehiculoIncompatible("No esta permitido");
+				}
+
+			}
+			break;
+		}
+		
+		throw new VehiculoInexistente("el vehiculo no existe");
+			
 	}
 
 
@@ -67,10 +123,17 @@ public class FuerzaArmada {
 	}
 
 
-	public Object getBatalla(String string) {
+	public Batalla getBatalla(Batalla nombre) {
 		// TODO Auto-generated method stub
-		return null;
-	} 
+		return nombre;
+	}
+
+
+	
+
+
+
+	
 	
 	
 
